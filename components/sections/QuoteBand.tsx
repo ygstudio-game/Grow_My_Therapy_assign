@@ -11,11 +11,11 @@ export default function QuoteBand() {
         className="object-cover"
       />
       <div className="absolute inset-0 bg-primary-dark/70" />
-      <div className="relative mx-auto max-w-3xl px-6 text-center">
-        <p className="font-serif text-2xl italic leading-relaxed text-white md:text-3xl">
+      <div className="relative mx-auto max-w-4xl px-6 text-center md:px-10">
+        <p className="font-serif text-3xl italic leading-relaxed text-white md:text-4xl">
           &ldquo;{quote.text}&rdquo;
         </p>
-        <p className="mt-6 text-sm uppercase tracking-widest text-white/90">{quote.author}</p>
+        <p className="mt-6 text-base uppercase tracking-widest text-white/90">{quote.author}</p>
       </div>
     </section>
   );

@@ -4,24 +4,24 @@ import { hero } from "@/lib/content";
 
 export default function Hero() {
   return (
-    <section className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-16 md:grid-cols-2 md:py-24">
+    <section className="mx-auto grid max-w-[1400px] items-center gap-12 px-6 py-16 md:grid-cols-2 md:px-10 md:py-24 lg:px-16">
       <div>
-        <p className="text-xs font-medium uppercase tracking-widest text-accent">
+        <p className="text-sm font-medium uppercase tracking-widest text-accent">
           Online & In-Person Counseling
         </p>
-        <h1 className="mt-4 font-serif text-4xl leading-tight text-primary-dark md:text-5xl">
+        <h1 className="mt-4 font-serif text-5xl leading-[1.1] text-primary-dark md:text-6xl">
           {hero.h1}
         </h1>
-        <p className="mt-5 text-lg text-primary">{hero.subhead}</p>
-        <p className="mt-4 text-base text-muted">{hero.body}</p>
+        <p className="mt-6 text-xl text-primary">{hero.subhead}</p>
+        <p className="mt-4 text-lg text-muted">{hero.body}</p>
         <Link
           href="#contact"
-          className="mt-8 inline-block rounded-full bg-primary px-7 py-3 text-sm font-medium text-white hover:opacity-90"
+          className="mt-8 inline-block rounded-full bg-primary px-8 py-3.5 text-base font-medium text-white hover:opacity-90"
         >
           {hero.ctaLabel}
         </Link>
       </div>
-      <div className="relative h-80 w-full overflow-hidden rounded-3xl md:h-[28rem]">
+      <div className="relative h-96 w-full overflow-hidden rounded-3xl md:h-[32rem]">
         <Image
           src="/images/maya-headshot.png"
           alt="Dr. Maya Reynolds, PsyD, licensed clinical psychologist in Santa Monica, California"

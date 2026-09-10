@@ -12,16 +12,16 @@ export default function Header() {
 
   return (
     <header className="bg-bg">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-8 md:py-10">
-        <Link href="#" className="font-serif text-2xl leading-tight text-primary-dark">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-8 md:px-10 md:py-10 lg:px-16">
+        <Link href="#" className="font-serif text-2xl leading-tight text-primary-dark md:text-3xl">
           {siteConfig.name}
         </Link>
-        <nav className="hidden gap-8 md:flex">
+        <nav className="hidden gap-10 md:flex">
           {primaryLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="text-xs font-medium uppercase tracking-widest text-primary-dark hover:text-primary"
+              className="text-sm font-medium uppercase tracking-widest text-primary-dark hover:text-primary"
             >
               {link.label}
             </Link>
@@ -29,7 +29,7 @@ export default function Header() {
         </nav>
         <Link
           href={cta.href}
-          className="hidden rounded-full border border-primary-dark px-6 py-2 text-xs font-medium uppercase tracking-widest text-primary-dark hover:bg-primary-dark hover:text-white md:inline-block"
+          className="hidden rounded-full border border-primary-dark px-7 py-2.5 text-sm font-medium uppercase tracking-widest text-primary-dark hover:bg-primary-dark hover:text-white md:inline-block"
         >
           Contact
         </Link>
