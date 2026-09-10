@@ -1,17 +1,24 @@
 import type { Metadata } from "next";
-import { Fraunces, Work_Sans } from "next/font/google";
+import { Cormorant, Mulish, Sacramento } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/content";
 
-const fraunces = Fraunces({
+const cormorant = Cormorant({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-cormorant",
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
 });
 
-const workSans = Work_Sans({
+const mulish = Mulish({
   subsets: ["latin"],
-  variable: "--font-work-sans",
+  variable: "--font-mulish",
+});
+
+const sacramento = Sacramento({
+  subsets: ["latin"],
+  variable: "--font-sacramento",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -41,7 +48,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${fraunces.variable} ${workSans.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${mulish.variable} ${sacramento.variable}`}>
       <body className="font-sans bg-bg text-primary-dark antialiased">
         <script
           type="application/ld+json"

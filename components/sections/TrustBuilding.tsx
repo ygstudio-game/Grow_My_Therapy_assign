@@ -15,7 +15,7 @@ export default function TrustBuilding() {
         </div>
         <div>
           <h2 className="font-serif text-3xl text-primary-dark">{trustBuilding.headline}</h2>
-          <p className="mt-4 font-serif text-lg italic text-primary">{trustBuilding.subhead}</p>
+          <p className="mt-4 text-lg text-primary">{trustBuilding.subhead}</p>
           {trustBuilding.body.map((paragraph) => (
             <p key={paragraph} className="mt-4 text-base text-muted">
               {paragraph}

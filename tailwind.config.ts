@@ -15,8 +15,9 @@ const config: Config = {
         "teal-band": "var(--color-teal-band)",
       },
       fontFamily: {
-        serif: ["var(--font-fraunces)", "serif"],
-        sans: ["var(--font-work-sans)", "sans-serif"],
+        serif: ["var(--font-cormorant)", "serif"],
+        sans: ["var(--font-mulish)", "sans-serif"],
+        script: ["var(--font-sacramento)", "cursive"],
       },
     },
   },

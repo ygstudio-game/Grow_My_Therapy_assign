@@ -4,7 +4,7 @@ export default function WhoIHelp() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
       <h2 className="font-serif text-3xl text-primary-dark">
-        Who I <span className="italic text-accent">help</span>
+        Who I <span className="font-script text-4xl not-italic text-accent">help</span>
       </h2>
       <div className="mt-10 grid gap-6 md:grid-cols-3">
         {whoIHelp.map((card) => (

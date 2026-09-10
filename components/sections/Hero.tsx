@@ -12,7 +12,7 @@ export default function Hero() {
         <h1 className="mt-4 font-serif text-4xl leading-tight text-primary-dark md:text-5xl">
           {hero.h1}
         </h1>
-        <p className="mt-5 font-serif text-xl italic text-primary">{hero.subhead}</p>
+        <p className="mt-5 text-lg text-primary">{hero.subhead}</p>
         <p className="mt-4 text-base text-muted">{hero.body}</p>
         <Link
           href="#contact"
