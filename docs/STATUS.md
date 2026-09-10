@@ -19,6 +19,7 @@ Last updated: 2026-09-10
   - **Second bug I caught during verification (not flagged by the audit tool itself):** it had set the SEO canonical URL to a fabricated, unowned domain (`mayareynoldspsyd.com`) that doesn't resolve to anything. Corrected to the real Vercel deployment URL — a canonical pointing nowhere is worse than none at all.
   - Removed a leftover throwaway debug script that wasn't part of the deliverable.
   - All 24 tests still pass, build clean.
+- **Fixed (5th pass) — container width & type scale:** user reported the clone had visible left/right margins the original doesn't, and that nav/footer/headings felt small. Verified against `qa-audit/spacing-original.json` (Squarespace `background-width--full-bleed` + `content-width--wide` classes) and `qa-audit/typography-original.json` (measured H1≈60px, H2≈48px, H3≈39px vs. our 48/30/20px). Widened every section's container from `max-w-6xl` (1152px) to `max-w-[1400px]` with responsive `px-6 md:px-10 lg:px-16` padding, and bumped the type scale across all 12 sections. 24/24 tests pass, build clean, no horizontal scroll at 375px or 1440px, verified visually.
 
 ## Git identity — fixed
 
