@@ -22,6 +22,10 @@ const sacramento = Sacramento({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://grow-my-therapy-clone-dun.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   title: "Anxiety & Trauma Therapist in Santa Monica, CA | Dr. Maya Reynolds, PsyD",
   description:
     "Dr. Maya Reynolds, PsyD offers anxiety, trauma, EMDR, and burnout therapy in Santa Monica, CA, with in-person and telehealth sessions across California.",

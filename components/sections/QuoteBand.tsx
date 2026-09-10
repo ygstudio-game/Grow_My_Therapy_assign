@@ -15,7 +15,7 @@ export default function QuoteBand() {
         <p className="font-serif text-2xl italic leading-relaxed text-white md:text-3xl">
           &ldquo;{quote.text}&rdquo;
         </p>
-        <p className="mt-6 text-sm uppercase tracking-widest text-white/80">{quote.author}</p>
+        <p className="mt-6 text-sm uppercase tracking-widest text-white/90">{quote.author}</p>
       </div>
     </section>
   );

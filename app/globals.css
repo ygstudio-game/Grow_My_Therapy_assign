@@ -5,12 +5,12 @@
 :root {
   --color-bg: #f7f3ec;
   --color-surface: #ffffff;
-  --color-primary: #6f8770;
-  --color-primary-dark: #4f5f4c;
-  --color-accent: #c97b5b;
-  --color-muted: #7c7568;
+  --color-primary: #4a684d;
+  --color-primary-dark: #3a4738;
+  --color-accent: #a25034;
+  --color-muted: #635c51;
   --color-border: #e4ded2;
-  --color-teal-band: #86b3b3;
+  --color-teal-band: #5a8a8a;
 }
 
 body {
