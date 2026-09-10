@@ -11,6 +11,7 @@ Last updated: 2026-09-10
 - `npm run build` → succeeds, 0 TypeScript errors, homepage prerenders as static content.
 - Verified responsive at 375px (mobile), 768px (tablet), 1024px, 1440px (desktop) — no horizontal scroll at any width, section order/spacing matches the original site's screenshots.
 - **Fixed mid-build:** the header originally hid all nav links behind the `md:` breakpoint with no way to reach them on mobile. `Header.tsx` is now a client component (`"use client"`) with a hamburger toggle (lucide-react `Menu`/`X` icons) for small screens — verified working via screenshot.
+- **Fixed mid-build (2):** header was incorrectly made `sticky`. Checked the original site's own scroll screenshots directly (`conejovalleycounseling-design-design/screens/scroll/*.png`) — its nav is static and scrolls away with the page. Reverted to `position: static`, and matched the original's actual proportions: taller padding, uppercase letter-spaced nav links, outline-pill "Contact" CTA instead of a filled button (the filled CTA belongs to the hero only in the original). Verified with before/after-scroll screenshots that the header now behaves like the source site. All 24 tests still pass.
 
 ## Git identity — fixed
 
