@@ -23,8 +23,8 @@ describe("content", () => {
     expect(siteConfig.address).toBe("123th Street 45 W, Santa Monica, CA 90401");
   });
 
-  it("has 6 nav links and 6 footer nav links", () => {
-    expect(navLinks).toHaveLength(6);
+  it("has 5 nav links and 6 footer nav links", () => {
+    expect(navLinks).toHaveLength(5);
     expect(footerNav).toHaveLength(6);
   });
 

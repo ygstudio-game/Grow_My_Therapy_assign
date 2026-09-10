@@ -7,9 +7,6 @@ describe("Header", () => {
     render(<Header />);
     expect(screen.getByText("Dr. Maya Reynolds, PsyD")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "About" })).toHaveAttribute("href", "#about");
-    expect(screen.getByRole("link", { name: "Book a Free Consultation" })).toHaveAttribute(
-      "href",
-      "#contact"
-    );
+    expect(screen.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "#contact");
   });
 });

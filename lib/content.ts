@@ -28,7 +28,6 @@ export const navLinks: NavLink[] = [
   { label: "Our Office", href: "#our-office" },
   { label: "FAQs", href: "#faqs" },
   { label: "Contact", href: "#contact" },
-  { label: "Book a Free Consultation", href: "#contact" },
 ];
 
 export const hero = {

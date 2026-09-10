@@ -11,9 +11,9 @@ export default function Header() {
   const cta = navLinks[navLinks.length - 1];
 
   return (
-    <header className="sticky top-0 z-50 bg-bg/90 backdrop-blur border-b border-border">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="#" className="font-serif text-lg text-primary-dark">
+    <header className="bg-bg">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-8 md:py-10">
+        <Link href="#" className="font-serif text-2xl leading-tight text-primary-dark">
           {siteConfig.name}
         </Link>
         <nav className="hidden gap-8 md:flex">
@@ -21,7 +21,7 @@ export default function Header() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-sm text-primary-dark hover:text-primary"
+              className="text-xs font-medium uppercase tracking-widest text-primary-dark hover:text-primary"
             >
               {link.label}
             </Link>
@@ -29,9 +29,9 @@ export default function Header() {
         </nav>
         <Link
           href={cta.href}
-          className="hidden rounded-full bg-accent px-5 py-2 text-sm font-medium text-white hover:opacity-90 md:inline-block"
+          className="hidden rounded-full border border-primary-dark px-6 py-2 text-xs font-medium uppercase tracking-widest text-primary-dark hover:bg-primary-dark hover:text-white md:inline-block"
         >
-          {cta.label}
+          Contact
         </Link>
         <button
           type="button"
