@@ -5,7 +5,7 @@ import { hero } from "@/lib/content";
 export default function Hero() {
   return (
     <section className="mx-auto grid max-w-[1400px] items-center gap-12 px-6 py-16 md:grid-cols-2 md:px-10 md:py-24 lg:px-16">
-      <div>
+      <div className="md:order-2">
         <p className="text-sm font-medium uppercase tracking-widest text-accent">
           Online & In-Person Counseling
         </p>
@@ -21,7 +21,7 @@ export default function Hero() {
           {hero.ctaLabel}
         </Link>
       </div>
-      <div className="relative h-96 w-full overflow-hidden rounded-3xl md:h-[32rem]">
+      <div className="relative h-96 w-full overflow-hidden rounded-3xl md:order-1 md:h-[32rem]">
         <Image
           src="/images/maya-headshot.png"
           alt="Dr. Maya Reynolds, PsyD, licensed clinical psychologist in Santa Monica, California"
