@@ -151,11 +151,26 @@ To achieve both design excellence and clinical accuracy, we organized our AI wor
 | **`claude-seo`** | Local SEO & Search Intent | Analyzed Santa Monica psychological services intent; shaped H1 and H2/H3 semantic structure; generated dynamic `sitemap.ts` and `robots.ts`; authored Schema.org `Psychologist` structured data with verified geo-coordinates (`34.01945, -118.49119`). |
 | **`impeccable`** | UI/UX & Visual Engineering | Critiqued and refined typography pairing (Cormorant + Mulish + Sacramento), micro-interactions (e.g. `active:scale-[0.97]`, custom accordion kinematics), optical alignment, and container padding across viewport transitions. |
 | **`responsive-craft`** | Adaptive Layouts & Viewports | Guided the multi-breakpoint layout strategy (320px ultra-compact to 2560px 4K), eliminating edge clipping, awkward card line wraps, and unexpected mobile overflows. |
+| **`emil-design-eng` + `animate`/`improve-animations`/`review-animations`** | Motion & Micro-Interaction Framework | Emil Kowalski's design-engineering philosophy supplied the actual animation decision rules: a frequency test (never animate keyboard-repeated actions; standard motion only for occasional UI like menus/accordions), `transform`/`opacity`-only animation, sub-300ms durations, custom easing curves. Applied through the layered workflow the skill set is built for — `improve-animations` audited the codebase and wrote a prioritized plan, `animate` implemented it (button press feedback, the FAQ accordion, the mobile menu transition), `review-animations` critiqued the result against a strict craft bar before it was accepted. |
 | **`systematic-debugging` & Strict Audit** | Empirical Verification & Anti-Hallucination | Operated as an adversarial reviewer to catch and eliminate common AI hallucinations, such as fabricated phone numbers or false test pass claims. |
 
 ---
 
-### 2. The 5-Phase Development Lifecycle
+### 2. Two Agents, Divided by Task — Not by Habit
+
+We didn't run one AI tool for the whole build. **Claude (Sonnet 5, via Claude Code)** and **Antigravity (Google's agentic IDE, Playwright-backed)** were assigned deliberately, based on what each task actually needed — judgment and planning versus long, iterative, screenshot-heavy execution:
+
+| Work | Handled by | Why |
+| :--- | :--- | :--- |
+| Requirement analysis, profile extraction, section-by-section spec, the initial full build (all 12 sections, 24 tests, the `lib/content.ts` data model) | **Claude** | High-judgment, low-repetition work: reading the assignment brief and the therapist profile precisely, deciding what's a required liberty (colors/copy/images) versus what must match the original exactly (layout/structure/fonts), and writing the first working version. This needs one continuous reasoning thread, not iteration volume. |
+| Root-cause accuracy fixes (non-sticky header, real font stack, container width, image/text left-right order, WCAG contrast, canonical URL) | **Claude** | Each of these was found by measuring the *live original site* directly (`getBoundingClientRect`, `getComputedStyle`) rather than guessing from a screenshot, then fixed and re-verified in the same reasoning pass — this kind of "investigate → hypothesize → fix → confirm" loop needs judgment at every step, not brute-force iteration. |
+| Multi-viewport QA sweeps (10 breakpoints, 320px–2560px), the `responsive-craft` audit pass, the micro-interactions implementation across every component, and final polish/deployment | **Antigravity** | These are high-volume, high-token execution loops — dozens of screenshot round-trips, repeated build/test cycles, applying the same pattern across 10+ files. Running that inside Claude's planning session would burn the context budget needed for judgment calls; handing it to a separate agent with a precise written brief keeps both fast and keeps the record of *why* each decision was made intact. |
+
+**The handoff mechanism:** every task given to Antigravity was preceded by a written plan document in `docs/` (e.g. `UI-ACCURACY-PLAN-AND-PROMPT.md`, `MICRO-INTERACTIONS-PLAN-AND-PROMPT.md`, `RESPONSIVE-AUDIT-PLAN-AND-PROMPT.md`) — never a bare instruction. Each one states what's already been verified (so it isn't redone), an explicit "do not touch" list (so deliberate, already-verified decisions don't get "fixed" back toward generic best practices that don't apply to a from-original clone), and a copy-paste-ready prompt. That's the actual mechanic behind "use AI intelligently, then refine manually" — the plan is the refinement; the AI executes against a spec a human already reasoned through.
+
+---
+
+### 3. The 5-Phase Development Lifecycle
 
 #### Phase 1: Spatial & Geometric UI Cloning (Template Fidelity)
 * **Action**: Instead of blindly asking an AI to "make a therapist homepage", we first performed a granular architectural breakdown of the source website (`conejovalleycounseling.com`).
