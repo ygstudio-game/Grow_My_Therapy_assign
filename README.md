@@ -318,6 +318,6 @@ grow-my-therapy-clone/
 
 ## 👤 Submitter Information
 
-- **Candidate Name**: Lokesh Sunil Borole  
+- **Candidate Name**: Yadnyesh Sunil Borole  
 - **Application**: Front-End Developer Internship — Grow My Therapy  
 - **Submission Date**: September 2026  
