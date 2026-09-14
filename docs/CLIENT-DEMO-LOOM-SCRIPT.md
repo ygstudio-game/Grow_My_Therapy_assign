@@ -1,7 +1,8 @@
 # Client Demo & Loom Walkthrough Script (5 Minutes)
 **Target Persona:** Dr. Maya Reynolds, PsyD (Licensed Clinical Psychologist, Santa Monica, CA)  
 **Tone:** Warm, professional, confident, consultative, non-technical  
-**Evaluation Weight:** 30% of total assignment grade
+**Evaluation Weight:** 30% of total assignment grade  
+**Recorded Video Walkthrough:** [https://www.loom.com/share/0737cae3dcfa46d7ac7421e25ee87872](https://www.loom.com/share/0737cae3dcfa46d7ac7421e25ee87872)  
 
 ---
 

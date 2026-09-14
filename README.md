@@ -12,7 +12,7 @@
 | :--- | :--- | :---: |
 | **1. Live Website Link** | [https://grow-my-therapy-clone-dun.vercel.app](https://grow-my-therapy-clone-dun.vercel.app) | 🟢 Live & Deployed |
 | **2. Public GitHub Repository** | [https://github.com/ygstudio-game/Grow_My_Therapy_assign](https://github.com/ygstudio-game/Grow_My_Therapy_assign) | 🟢 Active Repository |
-| **3. Video Walkthrough Link (5-min Loom)** | `[Insert your 5-minute Loom video link here]` | 🎥 Script Provided |
+| **3. Video Walkthrough Link (5-min Loom)** | [Watch Loom Client Demo Video (5 min)](https://www.loom.com/share/0737cae3dcfa46d7ac7421e25ee87872) | 🟢 Recorded & Verified |
 
 ---
 
@@ -132,6 +132,62 @@ The video demo is structured as a consultative client walkthrough presenting the
   5. **3:30–4:20**: Mobile responsiveness walkthrough (DevTools 375px view, touch targets, hamburger menu).
   6. **4:20–5:00**: Closing invitation CTA band, footer practice details, and consultative wrap-up.
 - **Speaker Guide**: The complete word-for-word script is available in [`docs/CLIENT-DEMO-LOOM-SCRIPT.md`](docs/CLIENT-DEMO-LOOM-SCRIPT.md).
+
+---
+
+## 🧠 Intelligent AI-Assisted Engineering Methodology: How This Project Was Built
+
+> **Grow My Therapy Core Guideline:** *"AI tools (ChatGPT, Cursor, Bolt, etc.) are allowed and encouraged, but use them intelligently—refine manually; no blind copy-paste. We want people who use AI intelligently, then refine manually."*
+
+Rather than treating AI as a one-shot "black box" code generator, this project was developed using a **structured agentic pair-programming methodology**. AI was deployed as a specialized team of assistants (code generator, accessibility inspector, local SEO strategist, and strict QA auditor), where **every line of generated code was manually inspected, architected, and verified against empirical browser and compiler evidence**.
+
+### 1. The Multi-Skill Agent Ecosystem
+
+To achieve both design excellence and clinical accuracy, we organized our AI workflow into specialized domain skills:
+
+| Specialized Skill / Tool | Domain Focus | Practical Impact on This Project |
+| :--- | :--- | :--- |
+| **`using-superpowers`** | Agent Workflow Architecture | Enforced a strict lifecycle: **Research → Implementation Plan → Review → Execution → Verification**. Prevented chaotic modifications and ensured work was trackable at every stage. |
+| **`claude-seo`** | Local SEO & Search Intent | Analyzed Santa Monica psychological services intent; shaped H1 and H2/H3 semantic structure; generated dynamic `sitemap.ts` and `robots.ts`; authored Schema.org `Psychologist` structured data with verified geo-coordinates (`34.01945, -118.49119`). |
+| **`impeccable`** | UI/UX & Visual Engineering | Critiqued and refined typography pairing (Cormorant + Mulish + Sacramento), micro-interactions (e.g. `active:scale-[0.97]`, custom accordion kinematics), optical alignment, and container padding across viewport transitions. |
+| **`responsive-craft`** | Adaptive Layouts & Viewports | Guided the multi-breakpoint layout strategy (320px ultra-compact to 2560px 4K), eliminating edge clipping, awkward card line wraps, and unexpected mobile overflows. |
+| **`systematic-debugging` & Strict Audit** | Empirical Verification & Anti-Hallucination | Operated as an adversarial reviewer to catch and eliminate common AI hallucinations, such as fabricated phone numbers or false test pass claims. |
+
+---
+
+### 2. The 5-Phase Development Lifecycle
+
+#### Phase 1: Spatial & Geometric UI Cloning (Template Fidelity)
+* **Action**: Instead of blindly asking an AI to "make a therapist homepage", we first performed a granular architectural breakdown of the source website (`conejovalleycounseling.com`).
+* **Manual Findings & Engineering**:
+  - Identified the exact container behavior: `max-w-[1400px]` with responsive horizontal gutters (`px-6 md:px-10 lg:px-16`).
+  - Discovered that the original template deliberately utilizes a **static, non-sticky header**. (An uncritical AI might have defaulted to `sticky top-0`, which would have violated template fidelity; we intentionally preserved `position: static`).
+  - Mapped section order, card aspects, and responsive reflow patterns before writing feature code.
+
+#### Phase 2: Profile Extraction & Zero-Hallucination Guardrails
+* **Action**: We treated Dr. Maya Reynolds' Google Doc profile as the **single immutable source of truth**.
+* **AI Hallucination Elimination**:
+  - In earlier AI drafts, standard placeholder phone numbers (`(310) 555-0148`) and email addresses (`hello@mayareynoldspsyd.com`) were generated.
+  - In our strict audit pass, we **completely excised these fabricated details** from the UI, footer, and JSON-LD schema, replacing them with verified profile facts: in-person Santa Monica sessions, California telehealth coverage, and a consultation anchor request.
+  - When inspecting the address `"123th Street 45 W, Santa Monica, CA 90401"`, we noted the probable typo (`123th` vs `123rd`), but followed strict protocol: **preserve source content verbatim** rather than silently hallucinating a correction, while flagging it for client onboarding review.
+
+#### Phase 3: Mathematical Color Science & Design System
+* **Action**: Rather than picking arbitrary palette colors, we engineered a custom color token system in `tailwind.config.ts` and `app/globals.css`.
+* **Empirical Contrast Verification**:
+  - Developed a standalone mathematical contrast computation script (`scripts/verify-theme-contrast.js`) based on W3C relative luminance formulas.
+  - Verified that Deep Forest on Linen achieves **8.62:1** (exceeding WCAG AAA), Terracotta on Linen achieves **5.09:1** (exceeding WCAG AA), and Muted Slate achieves **4.71:1**.
+
+#### Phase 4: Creative Section Engineering ("Our Office")
+* **Action**: Developed the custom requirement—an "Our Office" section that does not exist on the original template.
+* **Execution**: Blended the original site's visual language with Dr. Maya's physical Santa Monica practice narrative, utilizing genuine office photography from the profile packet and clear geographic context.
+
+#### Phase 5: Empirical Multi-Layer Verification
+* **Action**: Never accept an AI claim that "everything works" without automated, reproducible proof.
+* **Automated Evidence**:
+  1. **Vitest Unit Tests**: Authored 24 unit tests across 13 test files covering every component and data contract.
+  2. **Playwright 10-Viewport Audit**: Created `scripts/run-responsive-audit.js` running headless Chromium to programmatically assert `scrollWidth === clientWidth` and `overflowElements.length === 0` across 10 distinct viewports (320px, 375px, 390px, 430px, 768px, 820px, 1024px, 1280px, 1440px, 2560px).
+  3. **Axe-Core Automated Accessibility**: Created `scripts/run-axe-audit.js` running `@axe-core/playwright` to scan the rendered DOM, confirming **zero WCAG 2.0 / 2.1 AA violations**.
+  4. **Cryptographic Asset Integrity**: Ran SHA-256 hash checks confirming that all public images correspond 1:1 with the authentic client asset packet.
 
 ---
 
