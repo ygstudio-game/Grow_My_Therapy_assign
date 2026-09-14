@@ -139,3 +139,39 @@ YOUR TASK:
    Vercel — those are on hold pending explicit approval from the project
    owner.
 ```
+
+---
+
+## Part 7: Verification pass & resolution of open follow-up checks
+
+Conducted by Antigravity using automated Playwright multi-viewport extraction and direct DOM `getBoundingClientRect()` / `getComputedStyle()` measurement against the active local server (`http://localhost:3000`) and live original (`https://www.conejovalleycounseling.com/home`).
+
+10. **4-Viewport fresh screenshot & horizontal overflow pass** —
+    - Captured fresh full-page screenshots at 1440px (desktop), 1024px (small desktop), 768px (tablet), and 375px (mobile) for both the live original and local clone into `qa-audit/responsive/`.
+    - Verified `hasHorizontalScroll: false` on all 4 viewports — zero horizontal overflow anywhere on the clone.
+    - Verified WCAG 2 AA accessibility via `@axe-core/playwright`: 0 violations found.
+
+11. **ExpertiseGrid mobile/tablet reflow verified (Part 4 Check A)** —
+    - Measured grid columns: at 375px mobile, `grid-template-columns: 327px` (single column). Each `ul` column spans the full container width (327px) stacking column 1 (items 1-6) above column 2 (items 7-12) with clean divider spacing.
+    - At 768px tablet, `grid-template-columns: 312px 312px` (2 columns side-by-side with 64px `gap-x-16` within 40px gutters).
+    - At 1024px and 1440px, cleanly scales to `416px 416px` and `604px 604px`.
+    - Finding: The Tailwind `md:grid-cols-2` configuration already provides the correct 1-column mobile fallback and 2-column tablet/desktop presentation. No layout changes needed.
+
+12. **Hero image/text order swap at `md` breakpoint verified (Part 4 Check B)** —
+    - Measured element bounding boxes across breakpoints:
+      - 375px (mobile): text (top) above image (bottom) at `left: 24px, width: 327px`, maintaining SEO/heading primacy on mobile viewports.
+      - 768px (tablet): Image at `left: 40px, width: 320px`; Text at `left: 408px, width: 320px` (`imageIsLeft: true`). Perfectly balanced 50/50 split with 40px gutters and 48px gap (`gap-12 md:px-10`). No cramping observed.
+      - 1024px (small desktop): Image at `left: 64px, width: 424px`; Text at `left: 536px, width: 424px` (`imageIsLeft: true`).
+      - 1440px (desktop): Image at `left: 84px, width: 612px`; Text at `left: 744px, width: 612px` (`imageIsLeft: true`).
+    - Finding: The `md:order-1` / `md:order-2` swap correctly keeps image-left / text-right across all tablet and desktop viewports without visual cramping.
+
+13. **OurOffice container width & proportions verified (Part 4 Check C)** —
+    - Verified container classes: `mx-auto max-w-[1400px] px-6 py-16 md:px-10 md:py-24 lg:px-16`.
+    - Measured grid columns: 327px (375px), 320px 320px (768px), 424px 424px (1024px), 612px 612px (1440px).
+    - Proportions match the surrounding Hero, TrustBuilding, and About sections 1:1.
+
+14. **Discrepancy classification & regression check** —
+    - Cross-referenced all visual elements against Part 5 "Things intentionally left alone". All non-identical elements (earthy sage/terracotta palette, Dr. Maya Reynolds copy, headshot/office photos, 3 services cards, 3-column footer, dark CTA band, FAQ accordion) are confirmed intentional redesign choices.
+    - Zero structural bugs found.
+    - Vitest unit tests: 13 test files, 24/24 tests passing.
+    - TypeScript check: `npx tsc --noEmit` completed with 0 errors.

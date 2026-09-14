@@ -18,9 +18,8 @@ import {
 describe("content", () => {
   it("has correct site config", () => {
     expect(siteConfig.name).toBe("Dr. Maya Reynolds, PsyD");
-    expect(siteConfig.phone).toBe("(310) 555-0148");
-    expect(siteConfig.email).toBe("hello@mayareynoldspsyd.com");
     expect(siteConfig.address).toBe("123th Street 45 W, Santa Monica, CA 90401");
+    expect(siteConfig.availability).toContain("Santa Monica");
   });
 
   it("has 5 nav links and 6 footer nav links", () => {

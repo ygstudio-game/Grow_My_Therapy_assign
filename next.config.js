@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Grow My Therapy clone configuration
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
 };
 module.exports = nextConfig;

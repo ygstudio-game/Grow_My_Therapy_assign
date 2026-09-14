@@ -3,7 +3,7 @@ const { AxeBuilder } = require('@axe-core/playwright');
 const fs = require('fs');
 const path = require('path');
 
-const CLONE_URL = 'http://localhost:3005';
+const CLONE_URL = process.env.CLONE_URL || 'http://localhost:3000';
 const ORIGINAL_URL = 'https://www.conejovalleycounseling.com/home';
 const OUT_DIR = path.join(__dirname, '..', 'qa-audit');
 const STATES_DIR = path.join(OUT_DIR, 'states');

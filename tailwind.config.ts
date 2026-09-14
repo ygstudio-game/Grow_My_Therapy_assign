@@ -19,6 +19,13 @@ const config: Config = {
         sans: ["var(--font-mulish)", "sans-serif"],
         script: ["var(--font-sacramento)", "cursive"],
       },
+      transitionTimingFunction: {
+        "emil-out": "var(--ease-out)",
+      },
+      transitionDuration: {
+        "160": "160ms",
+        "220": "220ms",
+      },
     },
   },
   plugins: [],

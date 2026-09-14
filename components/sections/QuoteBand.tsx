@@ -8,6 +8,7 @@ export default function QuoteBand() {
         src="/images/office-2.jpeg"
         alt="Reading corner in Dr. Maya Reynolds' Santa Monica therapy office"
         fill
+        sizes="100vw"
         className="object-cover"
       />
       <div className="absolute inset-0 bg-primary-dark/70" />

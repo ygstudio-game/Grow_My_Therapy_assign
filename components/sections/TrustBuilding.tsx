@@ -19,6 +19,7 @@ export default function TrustBuilding() {
             src="/images/office-1.jpeg"
             alt="Dr. Maya Reynolds' quiet, sunlit therapy office in Santa Monica"
             fill
+            sizes="(min-width: 1400px) 612px, (min-width: 768px) 50vw, calc(100vw - 48px)"
             className="object-cover"
           />
         </div>

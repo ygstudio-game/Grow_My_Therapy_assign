@@ -2,7 +2,7 @@ import { services } from "@/lib/content";
 
 export default function Services() {
   return (
-    <section id="services" className="bg-surface">
+    <section id="services" className="scroll-mt-16 md:scroll-mt-24 bg-surface">
       <div className="mx-auto max-w-[1400px] px-6 py-16 md:px-10 md:py-24 lg:px-16">
         <h2 className="font-serif text-4xl text-primary-dark md:text-5xl">
           Honoring where you&apos;ve been{" "}
@@ -11,10 +11,14 @@ export default function Services() {
         <p className="mt-5 max-w-2xl text-lg text-muted">Our services include…</p>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {services.map((service) => (
-            <div key={service.title} className="rounded-3xl border border-border p-8">
+            <div key={service.title} className="hover-lift rounded-3xl border border-border bg-surface p-8">
               <h3 className="font-serif text-2xl text-primary-dark">{service.title}</h3>
               <p className="mt-3 text-base text-muted">{service.description}</p>
-              <a href="#contact" className="mt-4 inline-block text-base font-medium text-primary underline">
+              <a
+                href="#contact"
+                aria-label={`Learn more about ${service.title}`}
+                className="mt-4 inline-flex min-h-[44px] items-center rounded-sm text-base font-medium text-primary underline transition-colors duration-160 ease-out hover:text-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+              >
                 Learn more
               </a>
             </div>

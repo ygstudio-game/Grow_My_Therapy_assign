@@ -119,3 +119,57 @@ YOUR TASK:
    Vercel - those are on hold pending explicit approval from the project
    owner.
 ```
+
+---
+
+## Part 5: Responsive Audit Execution & Verification Log (Completed)
+
+Executed by Antigravity using the `responsive-craft` skill in Guided mode, testing the running Next.js application across 6 viewports: **320px** (ultra-small phone), **375px** (mobile), **768px** (tablet), **1024px** (laptop), **1440px** (desktop), and **2560px** (ultra-wide).
+
+### 1. Findings from the Pre-Flight & AI-Failure-Patterns Scan
+
+1. **Edge Viewports & Overflow (320px & 2560px)**:
+   - Evaluated horizontal overflow via `document.documentElement.scrollWidth > window.innerWidth` and element boundary box tracking across all 6 viewports.
+   - **Result**: `hasHorizontalScroll: false` on all 6 viewports. No elements overflowed horizontally.
+   - At **2560px**: The `max-w-[1400px]` container centered cleanly, preventing unreadably long line lengths, while full-bleed bands (QuoteBand, FAQ background, CtaBand) stretched smoothly across the ultra-wide canvas without clipping.
+   - At **320px**: The mobile layout remained intact, but identified small-screen typography and padding friction points in Header, FAQ, and OurOffice.
+
+2. **Next.js Image `fill` Missing Responsive `sizes` Attributes** (AI Failure Pattern #11 / Image Optimization):
+   - All 6 `<Image>` elements were using `fill` without explicitly declared `sizes` attributes, causing Next.js to default to `100vw` and request oversized `1920w` images even for 300px-440px containers on desktop.
+   - **Fix Applied**:
+     - `Hero.tsx`: Added `sizes="(min-width: 768px) 440px, (min-width: 480px) 440px, calc(100vw - 48px)"` (now requests 640w matching its 440px display).
+     - `About.tsx`: Added `sizes="(min-width: 768px) 440px, (min-width: 480px) 440px, calc(100vw - 48px)"`.
+     - `TrustBuilding.tsx`: Added `sizes="(min-width: 1400px) 612px, (min-width: 768px) 50vw, calc(100vw - 48px)"`.
+     - `OurOffice.tsx`: Added `sizes="(min-width: 1400px) 300px, (min-width: 768px) 25vw, calc(50vw - 32px)"` to both office gallery images.
+     - `QuoteBand.tsx`: Added `sizes="100vw"` for the full-width background photo.
+
+3. **Touch Targets & Hit Areas on Mobile (320-375px)**:
+   - **Hamburger Menu Toggle**: The icon was 24x24px without padding, falling short of the recommended 44x44px mobile touch target. Added `min-h-[44px] min-w-[44px] p-2.5 -mr-2.5 flex items-center justify-center`, expanding the hit area to 44x44px without altering visual alignment.
+   - **Mobile Menu Links**: Upgraded vertical padding to `min-h-[44px] py-3 flex items-center` for standard touch spacing.
+   - **Services "Learn more" Links**: Converted to `inline-flex min-h-[44px] items-center` to guarantee 44px tap targets.
+   - **Header Title on 320px**: Adjusted to `text-xl sm:text-2xl md:text-3xl` to ensure generous clearance between the title and the hamburger toggle on ultra-small screens.
+
+4. **FAQ Accordion & Mobile Padding Adaptations**:
+   - The FAQ accordion's CSS Grid `grid-rows-[0fr] ↔ grid-rows-[1fr]` transition was verified at both 320px and 2560px with `hasHScroll: false` and zero layout shift.
+   - Adapted accordion item padding on mobile from rigid `p-7` to `px-5 py-5 sm:px-7 sm:py-6` (summary) and `px-5 pb-5 sm:px-7 sm:pb-7` (body). This reduced summary height on 320px from 112px to 96px, preventing premature multi-line text wrapping while preserving spaciousness on desktop.
+
+5. **Safe Area Insets & Viewport Metadata** (AI Failure Pattern #7):
+   - `app/layout.tsx` was missing the `viewport` export. Added `export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" }` to ensure compatibility with notched and dynamic island devices.
+
+6. **Our Office Image Slot Proportions on Mobile**:
+   - In `OurOffice.tsx`, the 2-column image slots had fixed `h-80`, which made the side-by-side images appear as tall, narrow slits on small phones (~130px × 320px).
+   - Updated container height to `h-56 sm:h-72 md:h-80`, producing balanced proportions on mobile while keeping full height on desktop.
+
+### 2. Verification Results
+
+- **Automated Tests**: `13/13` test files passed, `24/24` unit tests passed (`npm test`).
+- **TypeScript**: `npx tsc --noEmit` passed with 0 errors.
+- **Multi-Viewport Audit Data** (`qa-audit/responsive-craft-audit.json`):
+  - `ultrasmall-320`: `scrollWidth: 320`, `hasHScroll: false`, `overflowingCount: 0`.
+  - `mobile-375`: `scrollWidth: 375`, `hasHScroll: false`, `overflowingCount: 0`.
+  - `tablet-768`: `scrollWidth: 768`, `hasHScroll: false`, `overflowingCount: 0`.
+  - `laptop-1024`: `scrollWidth: 1024`, `hasHScroll: false`, `overflowingCount: 0`.
+  - `desktop-1440`: `scrollWidth: 1440`, `hasHScroll: false`, `overflowingCount: 0`.
+  - `ultrawide-2560`: `scrollWidth: 2560`, `hasHScroll: false`, `overflowingCount: 0`.
+- **Full-page and interaction screenshots**: Captured and stored in `qa-audit/states/responsive-pass/`.
+

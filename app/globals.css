@@ -11,9 +11,97 @@
   --color-muted: #635c51;
   --color-border: #e4ded2;
   --color-teal-band: #5a8a8a;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  interpolate-size: allow-keywords;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
   background-color: var(--color-bg);
   color: var(--color-primary-dark);
 }
+
+/* Gated card hover lift (touch devices excluded) */
+@media (hover: hover) and (pointer: fine) {
+  .hover-lift {
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px -6px rgba(58, 71, 56, 0.09), 0 8px 12px -6px rgba(58, 71, 56, 0.04);
+  }
+}
+
+/* Native FAQ details/summary accordion transition */
+details {
+  overflow: hidden;
+  transition: border-color 200ms ease;
+}
+
+details[open] {
+  border-color: var(--color-primary);
+}
+
+details p {
+  transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+}
+
+details:not([open]) p {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+details[open] p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@starting-style {
+  details[open] p {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+/* Mobile dropdown menu entrance transition */
+@keyframes menu-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-menu-slide-down {
+  animation: menu-slide-down 200ms var(--ease-out) forwards;
+}
+
+::selection {
+  background-color: #4a684d;
+  color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .hover-lift:hover {
+    transform: none !important;
+  }
+}
+

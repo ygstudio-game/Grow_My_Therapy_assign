@@ -20,7 +20,7 @@ export default function WhoIHelp() {
           return (
             <div
               key={card.title}
-              className="overflow-hidden rounded-3xl border border-border bg-surface"
+              className="hover-lift overflow-hidden rounded-3xl border border-border bg-surface"
             >
               <div
                 className={`flex h-44 items-center justify-center bg-gradient-to-br ${panelGradients[i]}`}
